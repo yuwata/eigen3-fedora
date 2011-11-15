@@ -1,12 +1,12 @@
 Name:           eigen3
-Version:        3.0.0
-Release:        2%{?dist}
+Version:        3.0.3
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
 License:        LGPLv3+ or GPLv2+
 URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
-# Source file is at: http://bitbucket.org/eigen/eigen/get/3.0.0.tar.bz2
+# Source file is at: http://bitbucket.org/eigen/eigen/get/3.0.3.tar.bz2
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -31,6 +31,7 @@ BuildRequires:  graphviz
 BuildRequires:  tex(latex)
 
 %description
+%{summary}
 
 %package devel
 Summary: A lightweight C++ template library for vector and matrix math
@@ -43,7 +44,7 @@ Provides: %{name}-static = %{version}-%{release}
 %{summary}
 
 %prep
-%setup -q -n eigen-eigen-65ee2328342f
+%setup -q -n eigen-eigen-%{version}
 %patch0 -p0
 
 %build
@@ -72,6 +73,9 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Tue Nov 15 2011 Rich Mattes <richmattes@gmail.com> - 3.0.3-1
+- Update to release 3.0.3
+
 * Sun Apr 17 2011 Rich Mattes <richmattes@gmail.com> - 3.0.0-2
 - Patched sources to fix build failure
 - Removed fixes made upstream
