@@ -1,5 +1,5 @@
 Name:           eigen3
-Version:        3.0.3
+Version:        3.0.4
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
@@ -73,6 +73,9 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Sun Dec 18 2011 Rich Mattes <richmattes@gmail.com> - 3.0.4-1
+- Update to release 3.0.4
+
 * Tue Nov 15 2011 Rich Mattes <richmattes@gmail.com> - 3.0.3-1
 - Update to release 3.0.3
 
