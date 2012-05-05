@@ -1,12 +1,12 @@
 Name:           eigen3
-Version:        3.0.4
-Release:        2%{?dist}
+Version:        3.0.5
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
 License:        LGPLv3+ or GPLv2+
 URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
-# Source file is at: http://bitbucket.org/eigen/eigen/get/3.0.3.tar.bz2
+# Source file is at: http://bitbucket.org/eigen/eigen/get/3.0.5.tar.bz2
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -44,7 +44,7 @@ Provides: %{name}-static = %{version}-%{release}
 %{summary}
 
 %prep
-%setup -q -n eigen-eigen-%{version}
+%setup -q -n eigen-eigen-6e7488e20373
 %patch0 -p0
 
 %build
@@ -73,6 +73,9 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Sun Mar 11 2012 Rich Mattes <richmattes@gmail.com> - 3.0.5-1
+- Update to release 3.0.5
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
