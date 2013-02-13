@@ -1,6 +1,6 @@
 Name:           eigen3
 Version:        3.0.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -73,6 +73,9 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Sat Jul 28 2012 Tim Niemueller <tim@niemueller.de> - 3.0.6-1
 - Update to release 3.0.6 (fixes GCC 4.7 warnings)
 
