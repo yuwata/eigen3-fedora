@@ -71,6 +71,9 @@ rm -rf %{buildroot}
 * Sat Dec 01 2012 Rich Mattes <richmattes@gmail.com> - 3.1.2-1
 - Update to release 3.1.2
 
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Sat Jul 28 2012 Tim Niemueller <tim@niemueller.de> - 3.0.6-1
 - Update to release 3.0.6 (fixes GCC 4.7 warnings)
 
