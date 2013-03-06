@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
-License:        LGPLv3+ or GPLv2+
+License:        MPLv2.0 and LGPLv2+ and BSD
 URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
 # Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.2.tar.bz2
 # Renamed source file so it's not just a version number
@@ -62,13 +62,13 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
-%doc COPYING.GPL COPYING.LGPL
+%doc COPYING.README COPYING.BSD COPYING.MPL2 COPYING.LGPL
 %doc %{_target_platform}/doc/html
 %{_includedir}/eigen3
 %{_datadir}/pkgconfig/*
 
 %changelog
-* Sat Dec 01 2012 Rich Mattes <richmattes@gmail.com> - 3.1.2-1
+* Tue Mar 05 2013 Rich Mattes <richmattes@gmail.com> - 3.1.2-1
 - Update to release 3.1.2
 
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0.6-2
