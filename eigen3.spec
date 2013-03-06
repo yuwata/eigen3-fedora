@@ -1,20 +1,16 @@
 Name:           eigen3
-Version:        3.0.6
+Version:        3.1.2
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
 License:        LGPLv3+ or GPLv2+
 URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
-# Source file is at: http://bitbucket.org/eigen/eigen/get/3.0.5.tar.bz2
+# Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.2.tar.bz2
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-
-# Fixes build by adding the cstdef to a source file.
-# Not yet submitted upstream
-Patch0:         eigen-3.0.0.ptrdiff.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -44,8 +40,7 @@ Provides: %{name}-static = %{version}-%{release}
 %{summary}
 
 %prep
-%setup -q -n eigen-eigen-c76e08cca8eb
-%patch0 -p0
+%setup -q -n eigen-eigen-5097c01bcdc4
 
 %build
 mkdir %{_target_platform}
@@ -73,6 +68,9 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Sat Dec 01 2012 Rich Mattes <richmattes@gmail.com> - 3.1.2-1
+- Update to release 3.1.2
+
 * Sat Jul 28 2012 Tim Niemueller <tim@niemueller.de> - 3.0.6-1
 - Update to release 3.0.6 (fixes GCC 4.7 warnings)
 
