@@ -1,14 +1,15 @@
 Name:           eigen3
-Version:        3.1.2
+Version:        3.1.3
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
 License:        MPLv2.0 and LGPLv2+ and BSD
 URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
-# Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.2.tar.bz2
+# Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.3.tar.bz2
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
+Patch0:         eigen3_unused-typedefs.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
@@ -40,7 +41,8 @@ Provides: %{name}-static = %{version}-%{release}
 %{summary}
 
 %prep
-%setup -q -n eigen-eigen-5097c01bcdc4
+%setup -q -n eigen-eigen-2249f9c22fe8
+%patch0 -p1
 
 %build
 mkdir %{_target_platform}
@@ -68,6 +70,10 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Fri Apr 19 2013 Sandro Mani <manisandro@gmail.com> - 3.1.3-1
+- Update to release 3.1.3
+- Add patch for unused typedefs warning with gcc4.8
+
 * Tue Mar 05 2013 Rich Mattes <richmattes@gmail.com> - 3.1.2-1
 - Update to release 3.1.2
 
