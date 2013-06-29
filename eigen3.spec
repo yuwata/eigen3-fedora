@@ -1,6 +1,6 @@
 Name:           eigen3
 Version:        3.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -10,6 +10,10 @@ URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
 Patch0:         eigen3_unused-typedefs.patch
+# Fix for Upstream bug 554: http://eigen.tuxfamily.org/bz/show_bug.cgi?id=554 
+# Derived from hg changeset https://bitbucket.org/eigen/eigen/commits/21273ebd6b4d/
+# Should fix rhbz 978971
+Patch1:         eigen3-3.1.3-memalign.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
@@ -43,6 +47,7 @@ Provides: %{name}-static = %{version}-%{release}
 %prep
 %setup -q -n eigen-eigen-2249f9c22fe8
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir %{_target_platform}
@@ -70,6 +75,9 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Sat Jun 29 2013 Rich Mattes <richmattes@gmail.com> - 3.1.3-2
+- Add upstream patch to fix malloc/free bugs (rhbz#978971)
+
 * Fri Apr 19 2013 Sandro Mani <manisandro@gmail.com> - 3.1.3-1
 - Update to release 3.1.3
 - Add patch for unused typedefs warning with gcc4.8
