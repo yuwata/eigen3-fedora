@@ -93,7 +93,7 @@ excluded_tests="gmres_2|minres_1|bdcsvd_2"
 %endif
 
 make -C %{_target_platform} %{?_smp_mflags} buildtests
-make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V -E "$excluded_tests"
+make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V -E '$excluded_tests'"
 
 %files devel
 %doc COPYING.README COPYING.BSD COPYING.MPL2 COPYING.LGPL
