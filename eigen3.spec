@@ -1,6 +1,6 @@
 Name:           eigen3
 Version:        3.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -20,6 +20,8 @@ BuildRequires:  gsl-devel
 BuildRequires:  mpfr-devel
 BuildRequires:  sparsehash-devel
 BuildRequires:  suitesparse-devel
+# For tests
+BuildRequires:  gcc-gfortran
 
 BuildRequires:  cmake
 BuildRequires:  doxygen
@@ -45,7 +47,7 @@ Provides: %{name}-static = %{version}-%{release}
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
-%cmake .. -DBLAS_LIBRARIES="cblas" -DBLAS_LIBRARIES_DIR=%{_libdir}/atlas
+%cmake .. -DBLAS_LIBRARIES="cblas"
 popd
 make -C %{_target_platform} %{?_smp_mflags}
 make doc -C %{_target_platform} %{?_smp_mflags}
@@ -56,6 +58,14 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %install
 rm -rf %{buildroot}
 make install DESTDIR=%{buildroot} -C %{_target_platform}
+
+%check
+# The following tests FAILED:
+#        631 - gmres_2 (Failed)
+#        632 - minres_1 (Failed)
+#        647 - bdcsvd_2 (Failed)
+make -C %{_target_platform} %{?_smp_mflags} buildtests
+make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V -E 'gmres_2|minres_1|bdcsvd_2'"
 
 %clean
 rm -rf %{buildroot}
@@ -68,6 +78,10 @@ rm -rf %{buildroot}
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Fri Aug 2 2013 Orion Poplawski - 3.2-2
+- Build and run tests
+- Drop -DBLAS_LIBRARIES_DIR, not used
+
 * Wed Jul 24 2013 Sandro Mani <manisandro@gmail.com> - 3.2-1
 - Update to release 3.2
 
