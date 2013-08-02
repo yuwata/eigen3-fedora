@@ -9,8 +9,6 @@ URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
 # Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.3.tar.bz2
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      noarch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -20,8 +18,9 @@ BuildRequires:  gsl-devel
 BuildRequires:  mpfr-devel
 BuildRequires:  sparsehash-devel
 BuildRequires:  suitesparse-devel
-# For tests
 BuildRequires:  gcc-gfortran
+BuildRequires:  SuperLU-devel
+BuildRequires:  qt-devel
 
 BuildRequires:  cmake
 BuildRequires:  doxygen
@@ -29,17 +28,18 @@ BuildRequires:  graphviz
 BuildRequires:  tex(latex)
 
 %description
-%{summary}
+%{summary}.
 
 %package devel
-Summary: A lightweight C++ template library for vector and matrix math
-Group:   Development/Libraries
+Summary:   A lightweight C++ template library for vector and matrix math
+Group:     Development/Libraries
+BuildArch: noarch
 # -devel subpkg only atm, compat with other distros
-Provides: %{name} = %{version}-%{release}
+Provides:  %{name} = %{version}-%{release}
 # not *strictly* a -static pkg, but the results are the same
-Provides: %{name}-static = %{version}-%{release}
+Provides:  %{name}-static = %{version}-%{release}
 %description devel
-%{summary}
+%{summary}.
 
 %prep
 %setup -q -n eigen-eigen-ffa86ffb5570
@@ -47,7 +47,7 @@ Provides: %{name}-static = %{version}-%{release}
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
-%cmake .. -DBLAS_LIBRARIES="cblas"
+%cmake .. -DBLAS_LIBRARIES="cblas" -DSUPERLU_INCLUDES=%{_includedir}/SuperLU
 popd
 make -C %{_target_platform} %{?_smp_mflags}
 make doc -C %{_target_platform} %{?_smp_mflags}
@@ -56,8 +56,7 @@ rm -f %{_target_platform}/doc/html/installdox
 rm -f %{_target_platform}/doc/html/unsupported/installdox
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot} -C %{_target_platform}
+%make_install -C %{_target_platform}
 
 %check
 # The following tests FAILED:
@@ -67,11 +66,7 @@ make install DESTDIR=%{buildroot} -C %{_target_platform}
 make -C %{_target_platform} %{?_smp_mflags} buildtests
 make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V -E 'gmres_2|minres_1|bdcsvd_2'"
 
-%clean
-rm -rf %{buildroot}
-
 %files devel
-%defattr(-,root,root,-)
 %doc COPYING.README COPYING.BSD COPYING.MPL2 COPYING.LGPL
 %doc %{_target_platform}/doc/html
 %{_includedir}/eigen3
@@ -81,6 +76,8 @@ rm -rf %{buildroot}
 * Fri Aug 2 2013 Orion Poplawski - 3.2-2
 - Build and run tests
 - Drop -DBLAS_LIBRARIES_DIR, not used
+- Add some BR to enable tests of corresponding backends
+- spec cleanup
 
 * Wed Jul 24 2013 Sandro Mani <manisandro@gmail.com> - 3.2-1
 - Update to release 3.2
