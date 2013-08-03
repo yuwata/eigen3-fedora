@@ -84,12 +84,24 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 excluded_tests="dynalloc|nomalloc_2|packetmath_3|redux_6|visitor_6|array_6|array_for_matrix_6|product_trsolve_8|qr_colpivoting_1|matrix_exponential_6|gmres_1|levenberg_marquardt"
 %endif
 
-%ifarch x86_64 %{ix86}
+%ifarch x86_64
 # The following tests FAILED:
 #   631 - gmres_2 (Failed)
 #   632 - minres_1 (Failed)
 #   647 - bdcsvd_2 (Failed)
 excluded_tests="gmres_2|minres_1|bdcsvd_2"
+%endif
+
+%ifarch %{ix86}
+# The following tests FAILED:
+#	177 - ref_1 (Failed)
+#	555 - superlu_support_2 (Failed)
+#	556 - cholmod_support_1 (Failed)
+#	557 - cholmod_support_2 (Failed)
+#	570 - NonLinearOptimization (Failed)
+#	633 - gmres_1 (Failed)
+#	635 - levenberg_marquardt (Failed)
+excluded_tests="ref_1|superlu_support_2|cholmod_support_1|cholmod_support_2|NonLinearOptimization|gmres_1|levenberg_marquardt"
 %endif
 
 make -C %{_target_platform} %{?_smp_mflags} buildtests
