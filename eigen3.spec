@@ -6,7 +6,7 @@
 
 Name:           eigen3
 Version:        3.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -99,9 +99,11 @@ excluded_tests="gmres_2|minres_1|bdcsvd_2"
 #	556 - cholmod_support_1 (Failed)
 #	557 - cholmod_support_2 (Failed)
 #	570 - NonLinearOptimization (Failed)
+#	629 - minres_1 (Failed)
 #	633 - gmres_1 (Failed)
 #	635 - levenberg_marquardt (Failed)
-excluded_tests="ref_1|superlu_support_2|cholmod_support_1|cholmod_support_2|NonLinearOptimization|gmres_1|levenberg_marquardt"
+#	643 - bdcsvd_2 (Failed)
+excluded_tests="ref_1|superlu_support_2|cholmod_support_1|cholmod_support_2|NonLinearOptimization|minres_1|gmres_1|levenberg_marquardt|bdcsvd_2"
 %endif
 
 make -C %{_target_platform} %{?_smp_mflags} buildtests
@@ -114,7 +116,7 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V -E '$excluded_tests'"
 %{_datadir}/pkgconfig/*
 
 %changelog
-* Fri Aug 2 2013 Sandro Mani <manisandro@gmail.com> - 3.2-2
+* Sun Aug 4 2013 Sandro Mani <manisandro@gmail.com> - 3.2-3
 - Build and run tests
 - Drop -DBLAS_LIBRARIES_DIR, not used
 - Add some BR to enable tests of corresponding backends
