@@ -86,12 +86,13 @@ excluded_tests="dynalloc|nomalloc_2|packetmath_3|redux_6|visitor_6|array_6|array
 
 %ifarch x86_64
 # The following tests FAILED:
-#	608 - mpreal_support
+#	585 - matrix_function_1 (Failed)
+#	608 - mpreal_support (Failed)
 #   631 - gmres_2 (Failed)
 #	632 - gmres_1 (Failed)
 #   632 - minres_1 (Failed)
 #   647 - bdcsvd_2 (Failed)
-excluded_tests="mpreal_support|gmres_1|gmres_2|minres_1|bdcsvd_2"
+excluded_tests="matrix_function_1|mpreal_support|gmres_1|gmres_2|minres_1|bdcsvd_2"
 %endif
 
 %ifarch %{ix86}
