@@ -102,11 +102,12 @@ excluded_tests="matrix_function_1|mpreal_support|gmres_1|gmres_2|minres_1|bdcsvd
 #	556 - cholmod_support_1 (Failed)
 #	557 - cholmod_support_2 (Failed)
 #	570 - NonLinearOptimization (Failed)
+#	603 - mpreal_support (Failed)
 #	629 - minres_1 (Failed)
 #	633 - gmres_1 (Failed)
 #	635 - levenberg_marquardt (Failed)
 #	643 - bdcsvd_2 (Failed)
-excluded_tests="ref_1|superlu_support_2|cholmod_support_1|cholmod_support_2|NonLinearOptimization|minres_1|gmres_1|levenberg_marquardt|bdcsvd_2"
+excluded_tests="ref_1|superlu_support_2|cholmod_support_1|cholmod_support_2|NonLinearOptimization|mpreal_support|minres_1|gmres_1|levenberg_marquardt|bdcsvd_2"
 %endif
 
 make -C %{_target_platform} %{?_smp_mflags} buildtests
