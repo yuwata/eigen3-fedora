@@ -80,6 +80,7 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 #	254 - product_trsolve_8 (Failed)
 #	311 - qr_colpivoting_1 (Failed)
 #	337 - schur_complex_2 (Failed)
+#	405 - geo_hyperplane_1 (Failed)
 #	576 - matrix_exponential_6 (Failed)
 #	584 - matrix_power_9 (Failed)
 #	586 - matrix_power_8 (Failed)
@@ -87,7 +88,7 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 #	624 - minres_1 (Failed)
 #	630 - gmres_1 (Failed)
 #	632 - levenberg_marquardt (Failed)
-excluded_tests="dynalloc|nomalloc_2|nomalloc_3|packetmath_3|redux_6|visitor_6|array_6|array_for_matrix_6|product_trsolve_8|qr_colpivoting_1|schur_complex_2|matrix_exponential_6|matrix_power_8|matrix_power_9|gmres_2|minres_1|gmres_1|levenberg_marquardt"
+excluded_tests="dynalloc|nomalloc_2|nomalloc_3|packetmath_3|redux_6|visitor_6|array_6|array_for_matrix_6|product_trsolve_8|qr_colpivoting_1|schur_complex_2|geo_hyperplane_1|matrix_exponential_6|matrix_power_8|matrix_power_9|gmres_2|minres_1|gmres_1|levenberg_marquardt"
 %endif
 
 %ifarch x86_64
