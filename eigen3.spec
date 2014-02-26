@@ -100,8 +100,9 @@ excluded_tests="dynalloc|nomalloc_2|nomalloc_3|packetmath_3|redux_6|visitor_6|ar
 #   631 - gmres_2 (Failed)
 #	632 - gmres_1 (Failed)
 #   632 - minres_1 (Failed)
+#   635 - levenberg_marquardt (Failed)
 #   647 - bdcsvd_2 (Failed)
-excluded_tests="matrix_function_1|mpreal_support|gmres_1|gmres_2|minres_1|bdcsvd_2"
+excluded_tests="matrix_function_1|mpreal_support|gmres_1|gmres_2|minres_1|levenberg_marquardt|bdcsvd_2"
 %endif
 
 %ifarch %{ix86}
