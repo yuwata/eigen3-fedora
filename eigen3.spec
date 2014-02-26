@@ -5,8 +5,8 @@
 %global debug_package %{nil}
 
 Name:           eigen3
-Version:        3.2
-Release:        3%{?dist}
+Version:        3.2.1
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -129,6 +129,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V -E '$excluded_tests'"
 %{_datadir}/pkgconfig/*
 
 %changelog
+* Wed Feb 26 2014 Sandro Mani <manisandro@gmail.com> - 3.2.1-1
+- Udpate to release 3.2.1
+
 * Sun Aug 11 2013 Sandro Mani <manisandro@gmail.com> - 3.2-3
 - Build and run tests
 - Drop -DBLAS_LIBRARIES_DIR, not used
