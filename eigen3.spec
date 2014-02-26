@@ -1,8 +1,10 @@
 # The (empty) main package is arch, to have the package built and tests run
 # on all arches, but the actual result package is the noarch -devel subpackge.
-# Debuginfo packages are disabled To prevent rpmbuild from generating empty
-# debuginfo packages for the empty main package.
+# Debuginfo packages are disabled to prevent rpmbuild from generating an empty
+# debuginfo package for the empty main package.
 %global debug_package %{nil}
+
+%global commit 6b38706d90a9
 
 Name:           eigen3
 Version:        3.2.1
@@ -48,7 +50,7 @@ Provides:  %{name}-static = %{version}-%{release}
 %{summary}.
 
 %prep
-%setup -q -n eigen-eigen-ffa86ffb5570
+%setup -q -n eigen-eigen-%{commit}
 
 %build
 mkdir %{_target_platform}
