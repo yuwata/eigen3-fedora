@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.2.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -52,6 +52,7 @@ Provides:  %{name}-static = %{version}-%{release}
 %package doc
 Summary:   Developer documentation for Eigen
 Requires:  %{name}-devel = %{version}-%{release}
+BuildArch: noarch
 %description doc
 Developer documentation for Eigen.
 
@@ -87,6 +88,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Thu Feb 27 2014 Sandro Mani <manisandro@gmail.com> - 3.2.1-3
+- Make doc package noarch
+
 * Thu Feb 27 2014 Sandro Mani <manisandro@gmail.com> - 3.2.1-2
 - Split off doc to a separate package
 
