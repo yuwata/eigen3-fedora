@@ -1,0 +1,12 @@
+diff -up eigen-eigen-ffa86ffb5570/unsupported/test/mpreal/mpreal.h.ppc64 eigen-eigen-ffa86ffb5570/unsupported/test/mpreal/mpreal.h
+--- eigen-eigen-ffa86ffb5570/unsupported/test/mpreal/mpreal.h.ppc64	2013-07-23 19:48:35.000000000 -0600
++++ eigen-eigen-ffa86ffb5570/unsupported/test/mpreal/mpreal.h	2014-02-13 10:18:48.290136534 -0700
+@@ -97,7 +97,7 @@
+         #endif
+ 
+     #elif defined (__GNUC__) && defined(__linux__)
+-        #if defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(__ia64) || defined(__itanium__) || defined(_M_IA64)
++        #if defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(__ia64) || defined(__itanium__) || defined(_M_IA64) || defined (__PPC64__)
+             #undef MPREAL_HAVE_INT64_SUPPORT    // Remove all shaman dances for x64 builds since
+             #undef MPFR_USE_INTMAX_T            // GCC already supports x64 as of "long int" is 64-bit integer, nothing left to do
+         #else

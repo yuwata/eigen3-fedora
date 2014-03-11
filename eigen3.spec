@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.2.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -17,6 +17,8 @@ URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
 # Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.3.tar.bz2
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
+# Add ppc64 support
+Patch0:         eigen3-ppc64.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -58,10 +60,16 @@ Developer documentation for Eigen.
 
 %prep
 %setup -q -n eigen-eigen-%{commit}
+%patch0 -p1 -b .ppc64
 
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
+%ifarch ppc64
+# Currently get a compiler ICE, work around it
+# https://bugzilla.redhat.com/show_bug.cgi?id=1063999
+export CXXFLAGS="%{optflags} -mno-vsx"
+%endif
 %cmake .. -DBLAS_LIBRARIES="cblas" -DSUPERLU_INCLUDES=%{_includedir}/SuperLU
 popd
 make -C %{_target_platform} %{?_smp_mflags}
@@ -88,6 +96,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Tue Mar 11 2014 Orion Poplawski <orion@cora.nwra.com> - 3.2.1-4
+- Add ppc64 support
+
 * Thu Feb 27 2014 Sandro Mani <manisandro@gmail.com> - 3.2.1-3
 - Make doc package noarch
 
