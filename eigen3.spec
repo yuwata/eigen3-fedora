@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.2.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -96,6 +96,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.2.1-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Tue Mar 11 2014 Orion Poplawski <orion@cora.nwra.com> - 3.2.1-4
 - Add ppc64 support
 
