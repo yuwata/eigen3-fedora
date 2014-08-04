@@ -4,11 +4,11 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 6b38706d90a9
+%global commit 1306d75b4a21
 
 Name:           eigen3
-Version:        3.2.1
-Release:        5%{?dist}
+Version:        3.2.2
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -96,6 +96,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Mon Aug 04 2014 Sandro Mani <manisandro@gmail.com> - 3.2.2-1
+- Update to release 3.2.2
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.2.1-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
