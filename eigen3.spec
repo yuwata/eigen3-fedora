@@ -4,11 +4,11 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 1306d75b4a21
+%global commit 36fd1ba04c12
 
 Name:           eigen3
-Version:        3.2.2
-Release:        2%{?dist}
+Version:        3.2.3
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -17,8 +17,9 @@ URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
 # Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.3.tar.bz2
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
-# Add ppc64 support
-Patch0:         eigen3-ppc64.patch
+
+# Fix build with recent suitesparse versions
+Patch0:         eigen-3.2.3_suitesparse.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -60,7 +61,7 @@ Developer documentation for Eigen.
 
 %prep
 %setup -q -n eigen-eigen-%{commit}
-%patch0 -p1 -b .ppc64
+%patch0 -p1
 
 %build
 mkdir %{_target_platform}
@@ -96,6 +97,10 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Thu Dec 18 2014 Sandro Mani <manisandro@gmail.com> - 3.2.3-1
+- Update to release 3.2.3
+- Drop upstreamed eigen3-ppc64.patch
+
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.2.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
