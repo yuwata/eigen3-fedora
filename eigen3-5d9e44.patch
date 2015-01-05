@@ -1,0 +1,20 @@
+# HG changeset patch
+# User Gael Guennebaud <g.gael@free.fr>
+# Date 1418910820 -3600
+# Branch 3.2
+# Node ID 5d9e54445535570698f7465582c7256d9d74c004
+# Parent  9716ca6de21838927484f3c33050648bac890ac3
+rm explicit keyword introduced by backporting another change
+
+diff --git a/Eigen/src/Geometry/Rotation2D.h b/Eigen/src/Geometry/Rotation2D.h
+--- a/Eigen/src/Geometry/Rotation2D.h
++++ b/Eigen/src/Geometry/Rotation2D.h
+@@ -59,7 +59,7 @@
+ public:
+ 
+   /** Construct a 2D counter clock wise rotation from the angle \a a in radian. */
+-  explicit inline Rotation2D(const Scalar& a) : m_angle(a) {}
++  inline Rotation2D(const Scalar& a) : m_angle(a) {}
+   
+   /** Default constructor wihtout initialization. The represented rotation is undefined. */
+   Rotation2D() {}
