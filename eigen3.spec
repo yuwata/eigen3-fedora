@@ -4,11 +4,11 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 36fd1ba04c12
+%global commit 10219c95fe65
 
 Name:           eigen3
-Version:        3.2.3
-Release:        2%{?dist}
+Version:        3.2.4
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -20,8 +20,6 @@ Source0:        eigen-%{version}.tar.bz2
 
 # Fix build with recent suitesparse versions
 Patch0:         eigen-3.2.3_suitesparse.patch
-# Backport of upstream regression fix in Rotation2D.
-Patch1:         eigen3-5d9e44.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -64,7 +62,6 @@ Developer documentation for Eigen.
 %prep
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
-%patch1 -p1
 
 %build
 mkdir %{_target_platform}
@@ -100,6 +97,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Thu Jan 22 2015 Sandro Mani <manisandro@gmail.com> - 3.2.4-1
+- Update to release 3.2.4
+
 * Mon Jan 05 2015 Rich Mattes <richmattes@gmail.com> - 3.2.3-2
 - Backport upstream Rotation2D fix
 
