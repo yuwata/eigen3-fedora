@@ -4,10 +4,10 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 10219c95fe65
+%global commit bdd17ee3b1b3
 
 Name:           eigen3
-Version:        3.2.4
+Version:        3.2.5
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
@@ -89,7 +89,7 @@ make -C %{_target_platform} %{?_smp_mflags} buildtests
 make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 
 %files devel
-%doc COPYING.README COPYING.BSD COPYING.MPL2 COPYING.LGPL
+%license COPYING.README COPYING.BSD COPYING.MPL2 COPYING.LGPL
 %{_includedir}/eigen3
 %{_datadir}/pkgconfig/*
 
@@ -97,6 +97,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Tue Jun 16 2015 Sandro Mani <manisandro@gmail.com> - 3.2.5-1
+- Update to release 3.2.5
+
 * Thu Jan 22 2015 Sandro Mani <manisandro@gmail.com> - 3.2.4-1
 - Update to release 3.2.4
 
