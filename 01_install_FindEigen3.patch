@@ -1,0 +1,20 @@
+Description: install FindEigen3.cmake into usr/share/cmake-2.8/Modules
+Author: Anton Gladky <gladk@debian.org>
+Last-Update: 2013-11-09
+
+Index: eigen-eigen-1306d75b4a21/CMakeLists.txt
+===================================================================
+--- eigen-eigen-1306d75b4a21.orig/CMakeLists.txt
++++ eigen-eigen-1306d75b4a21/CMakeLists.txt
+@@ -323,6 +323,11 @@ install(FILES
+   DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel
+   )
+ 
++install(FILES
++  cmake/FindEigen3.cmake
++  DESTINATION ${CMAKE_INSTALL_PREFIX}/share/cmake/Modules
++  )
++
+ if(EIGEN_BUILD_PKGCONFIG)
+     SET(path_separator ":")
+     STRING(REPLACE ${path_separator} ";" pkg_config_libdir_search "$ENV{PKG_CONFIG_LIBDIR}")
