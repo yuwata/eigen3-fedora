@@ -4,11 +4,11 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit bdd17ee3b1b3
+%global commit c58038c56923
 
 Name:           eigen3
-Version:        3.2.5
-Release:        2%{?dist}
+Version:        3.2.6
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -102,6 +102,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Thu Oct 02 2015 Sandro Mani <manisandro@gmail.com> - 3.2.6-1
+- Update to release 3.2.6
+
 * Fri Aug 21 2015 Rich Mattes <richmattes@gmail.com> - 3.2.5-2
 - Apply patch to install FindEigen3.cmake
 
