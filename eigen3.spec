@@ -4,10 +4,10 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit c58038c56923
+%global commit b30b87236a1b
 
 Name:           eigen3
-Version:        3.2.6
+Version:        3.2.7
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
@@ -18,11 +18,9 @@ URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
 # Renamed source file so it's not just a version number
 Source0:        eigen-%{version}.tar.bz2
 
-# Fix build with recent suitesparse versions
-Patch0:         eigen-3.2.3_suitesparse.patch
 # Install FindEigen3.cmake
 # Adapted from Debian eigen3 package
-Patch1:         01_install_FindEigen3.patch
+Patch0:         01_install_FindEigen3.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -65,7 +63,6 @@ Developer documentation for Eigen.
 %prep
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
-%patch1 -p1
 
 %build
 mkdir %{_target_platform}
@@ -102,7 +99,10 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Thu Oct 02 2015 Sandro Mani <manisandro@gmail.com> - 3.2.6-1
+* Thu Nov 05 2015 Sandro Mani <manisandro@gmail.com> - 3.2.7-1
+- Update to release 3.2.7
+
+* Thu Oct 01 2015 Sandro Mani <manisandro@gmail.com> - 3.2.6-1
 - Update to release 3.2.6
 
 * Fri Aug 21 2015 Rich Mattes <richmattes@gmail.com> - 3.2.5-2
