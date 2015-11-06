@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.2.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -21,6 +21,10 @@ Source0:        eigen-%{version}.tar.bz2
 # Install FindEigen3.cmake
 # Adapted from Debian eigen3 package
 Patch0:         01_install_FindEigen3.patch
+
+# Fix incorrect include path in pkgconfig file
+# See http://eigen.tuxfamily.org/bz/show_bug.cgi?id=1100#c2
+Patch1:         eigen_pkgconfig.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -63,6 +67,7 @@ Developer documentation for Eigen.
 %prep
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir %{_target_platform}
@@ -99,6 +104,9 @@ make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Fri Nov 06 2015 Sandro Mani <manisandro@gmail.com> - 3.2.7-2
+- Fix incorrect include path in pkgconfig file
+
 * Thu Nov 05 2015 Sandro Mani <manisandro@gmail.com> - 3.2.7-1
 - Update to release 3.2.7
 
