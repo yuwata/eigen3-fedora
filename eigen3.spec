@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.2.7
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -104,6 +104,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.7-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Fri Nov 06 2015 Sandro Mani <manisandro@gmail.com> - 3.2.7-3
 - Again: Fix incorrect include path in pkgconfig file
 
