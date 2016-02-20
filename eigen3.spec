@@ -22,6 +22,9 @@ Source0:        eigen-%{version}.tar.bz2
 # Adapted from Debian eigen3 package
 Patch0:         01_install_FindEigen3.patch
 
+# Fix pkg-config file
+Patch1:         eigen_pkgconfig.patch
+
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
 BuildRequires:  glew-devel
@@ -65,6 +68,7 @@ Developer documentation for Eigen.
 %prep
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir %{_target_platform}

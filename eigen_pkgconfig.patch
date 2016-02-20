@@ -1,13 +1,9 @@
---- a/eigen3.pc.in	
-+++ a/eigen3.pc.in	
-@@ -1,6 +1,9 @@ 
-+prefix=${CMAKE_INSTALL_PREFIX}
-+exec_prefix=${CMAKE_INSTALL_PREFIX}
-+
- Name: Eigen3
- Description: A C++ template library for linear algebra: vectors, matrices, and related algorithms
+diff -rupN eigen-eigen-07105f7124f9/eigen3.pc.in eigen-eigen-07105f7124f9-new/eigen3.pc.in
+--- eigen-eigen-07105f7124f9/eigen3.pc.in	2016-02-16 14:26:15.000000000 +0100
++++ eigen-eigen-07105f7124f9-new/eigen3.pc.in	2016-02-20 19:13:19.816842461 +0100
+@@ -6,4 +6,4 @@ Description: A C++ template library for
  Requires:
- Version: ${EIGEN_VERSION_NUMBER}
+ Version: @EIGEN_VERSION_NUMBER@
  Libs:
--Cflags: -I${INCLUDE_INSTALL_DIR}
-+Cflags: -I${CMAKE_INSTALL_PREFIX}/${INCLUDE_INSTALL_DIR}
+-Cflags: -I${prefix}/@INCLUDE_INSTALL_DIR@
++Cflags: -I@INCLUDE_INSTALL_DIR@
