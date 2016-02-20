@@ -4,11 +4,11 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit b30b87236a1b
+%global commit 07105f7124f9
 
 Name:           eigen3
-Version:        3.2.7
-Release:        4%{?dist}
+Version:        3.2.8
+Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -22,10 +22,6 @@ Source0:        eigen-%{version}.tar.bz2
 # Adapted from Debian eigen3 package
 Patch0:         01_install_FindEigen3.patch
 
-# Fix incorrect include path in pkgconfig file
-# See http://eigen.tuxfamily.org/bz/show_bug.cgi?id=1100#c2
-Patch1:         eigen_pkgconfig.patch
-
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
 BuildRequires:  glew-devel
@@ -37,6 +33,8 @@ BuildRequires:  suitesparse-devel
 BuildRequires:  gcc-gfortran
 BuildRequires:  SuperLU-devel
 BuildRequires:  qt-devel
+BuildRequires:  scotch-devel
+BuildRequires:  metis-devel
 
 BuildRequires:  cmake
 BuildRequires:  doxygen
@@ -67,7 +65,6 @@ Developer documentation for Eigen.
 %prep
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
-%patch1 -p1
 
 %build
 mkdir %{_target_platform}
@@ -77,7 +74,11 @@ pushd %{_target_platform}
 # https://bugzilla.redhat.com/show_bug.cgi?id=1063999
 export CXXFLAGS="%{optflags} -mno-vsx"
 %endif
-%cmake .. -DBLAS_LIBRARIES="cblas" -DSUPERLU_INCLUDES=%{_includedir}/SuperLU
+%cmake .. -DINCLUDE_INSTALL_DIR=%{_includedir}/eigen3 \
+  -DBLAS_LIBRARIES="cblas" \
+  -DSUPERLU_INCLUDES=%{_includedir}/SuperLU \
+  -DSCOTCH_INCLUDES=%{_includedir} -DSCOTCH_LIBRARIES="scotch" \
+  -DMETIS_INCLUDES=%{_includedir} -DMETIS_LIBRARIES="metis"
 popd
 make -C %{_target_platform} %{?_smp_mflags}
 make doc -C %{_target_platform} %{?_smp_mflags}
@@ -104,6 +105,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Sat Feb 20 2016 Sandro Mani <manisandro@gmail.com> - 3.2.8-1
+- Update to 3.2.8
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.7-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
