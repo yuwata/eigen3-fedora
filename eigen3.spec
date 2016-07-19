@@ -4,10 +4,10 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 07105f7124f9
+%global commit dc6cfdf9bcec
 
 Name:           eigen3
-Version:        3.2.8
+Version:        3.2.9
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
@@ -109,6 +109,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Tue Jul 19 2016 Sandro Mani <manisandro@gmail.com> - 3.2.9-1
+- Update to 3.2.9
+
 * Sat Feb 20 2016 Sandro Mani <manisandro@gmail.com> - 3.2.8-1
 - Update to 3.2.8
 
