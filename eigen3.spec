@@ -4,10 +4,10 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit dc6cfdf9bcec
+%global commit b9cd8366d4e8
 
 Name:           eigen3
-Version:        3.2.9
+Version:        3.2.10
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
@@ -84,8 +84,8 @@ export CXXFLAGS="%{optflags} -mno-vsx"
   -DSCOTCH_INCLUDES=%{_includedir} -DSCOTCH_LIBRARIES="scotch" \
   -DMETIS_INCLUDES=%{_includedir} -DMETIS_LIBRARIES="metis"
 popd
-make -C %{_target_platform} %{?_smp_mflags}
-make doc -C %{_target_platform} %{?_smp_mflags}
+%make_build -C %{_target_platform}
+%make_build doc -C %{_target_platform}
 
 rm -f %{_target_platform}/doc/html/installdox
 rm -f %{_target_platform}/doc/html/unsupported/installdox
@@ -109,6 +109,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Tue Oct 04 2016 Sandro Mani <manisandro@gmail.com> - 3.2.10-1
+- Update to 3.2.10
+
 * Tue Jul 19 2016 Sandro Mani <manisandro@gmail.com> - 3.2.9-1
 - Update to 3.2.9
 
