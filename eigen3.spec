@@ -4,19 +4,17 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit b9cd8366d4e8
+%global commit 26667be4f70b
 
 Name:           eigen3
-Version:        3.2.10
+Version:        3.3.0
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
 License:        MPLv2.0 and LGPLv2+ and BSD
 URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
-# Source file is at: http://bitbucket.org/eigen/eigen/get/3.1.3.tar.bz2
-# Renamed source file so it's not just a version number
-Source0:        eigen-%{version}.tar.bz2
+Source0:        http://bitbucket.org/eigen/eigen/get/%{version}.tar.bz2
 
 # Install FindEigen3.cmake
 # Adapted from Debian eigen3 package
@@ -24,6 +22,8 @@ Patch0:         01_install_FindEigen3.patch
 
 # Fix pkg-config file
 Patch1:         eigen_pkgconfig.patch
+# Fix the include paths in the new Eigen3Config.cmake file
+Patch2:         eigen3-3.3.0-fixcmake.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -69,20 +69,21 @@ Developer documentation for Eigen.
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
 %patch1 -p1
-
+%patch2 -p0 -b .fixcmake
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
-%ifarch ppc64
+#%ifarch ppc64
 # Currently get a compiler ICE, work around it
 # https://bugzilla.redhat.com/show_bug.cgi?id=1063999
-export CXXFLAGS="%{optflags} -mno-vsx"
-%endif
+#export CXXFLAGS="%{optflags} -mno-vsx"
+#%endif
 %cmake .. -DINCLUDE_INSTALL_DIR=%{_includedir}/eigen3 \
   -DBLAS_LIBRARIES="cblas" \
   -DSUPERLU_INCLUDES=%{_includedir}/SuperLU \
   -DSCOTCH_INCLUDES=%{_includedir} -DSCOTCH_LIBRARIES="scotch" \
-  -DMETIS_INCLUDES=%{_includedir} -DMETIS_LIBRARIES="metis"
+  -DMETIS_INCLUDES=%{_includedir} -DMETIS_LIBRARIES="metis" \
+  -DCMAKEPACKAGE_INSTALL_DIR=%{_datadir}/%{name}
 popd
 %make_build -C %{_target_platform}
 %make_build doc -C %{_target_platform}
@@ -102,6 +103,7 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %files devel
 %license COPYING.README COPYING.BSD COPYING.MPL2 COPYING.LGPL
 %{_includedir}/eigen3
+%{_datadir}/%{name}
 %{_datadir}/pkgconfig/*
 %{_datadir}/cmake/Modules/*.cmake
 
@@ -109,6 +111,10 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Wed Nov 23 2016 Rich Mattes <richmattes@gmail.com> - 3.3.0-1
+- Update to 3.3.0
+- Stop renaming tarball - just use upstream tarball
+
 * Tue Oct 04 2016 Sandro Mani <manisandro@gmail.com> - 3.2.10-1
 - Update to 3.2.10
 
