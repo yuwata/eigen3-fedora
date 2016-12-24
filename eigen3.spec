@@ -4,11 +4,11 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 26667be4f70b
+%global commit f562a193118d
 
 Name:           eigen3
-Version:        3.3.0
-Release:        1%{?dist}
+Version:        3.3.1
+Release:        0%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -23,7 +23,7 @@ Patch0:         01_install_FindEigen3.patch
 # Fix pkg-config file
 Patch1:         eigen_pkgconfig.patch
 # Fix the include paths in the new Eigen3Config.cmake file
-Patch2:         eigen3-3.3.0-fixcmake.patch
+#Patch2:         eigen3-3.3.0-fixcmake.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -69,7 +69,7 @@ Developer documentation for Eigen.
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p0 -b .fixcmake
+#%patch2 -p0 -b .fixcmake
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
@@ -111,6 +111,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Sat Dec 24 2016 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.1-0
+- Update to 3.3.1
+
 * Wed Nov 23 2016 Rich Mattes <richmattes@gmail.com> - 3.3.0-1
 - Update to 3.3.0
 - Stop renaming tarball - just use upstream tarball
