@@ -93,6 +93,7 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 
 %install
 %make_install -C %{_target_platform}
+sed -e 's|${PACKAGE_PREFIX_DIR}/${PACKAGE_PREFIX_DIR}|${PACKAGE_PREFIX_DIR}|' -i %{buildroot}%{_datadir}/%{name}/Eigen3Config.cmake
 
 %check
 # Run tests but make failures non-fatal. Note that upstream doesn't expect the
