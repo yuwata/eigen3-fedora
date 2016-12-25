@@ -4,11 +4,12 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit f562a193118d
+%global commit 8fae26482842
+%{?commit:%global commitshort %(c=%{commit}; echo ${c:0:7})}
 
 Name:           eigen3
 Version:        3.3.1
-Release:        0%{?dist}
+Release:        0.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -93,7 +94,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 
 %install
 %make_install -C %{_target_platform}
-sed -e 's|${PACKAGE_PREFIX_DIR}/${PACKAGE_PREFIX_DIR}|${PACKAGE_PREFIX_DIR}|' -i %{buildroot}%{_datadir}/%{name}/Eigen3Config.cmake
+# The following line is an workaround for missing Patch2 in the upstream repository
+sed -e 's|${PACKAGE_PREFIX_DIR}/${PACKAGE_PREFIX_DIR}|${PACKAGE_PREFIX_DIR}|' \
+    -i %{buildroot}%{_datadir}/%{name}/Eigen3Config.cmake
 
 %check
 # Run tests but make failures non-fatal. Note that upstream doesn't expect the
@@ -112,6 +115,9 @@ sed -e 's|${PACKAGE_PREFIX_DIR}/${PACKAGE_PREFIX_DIR}|${PACKAGE_PREFIX_DIR}|' -i
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Sun Dec 25 2016 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.1-0.1.hg8fae264
+- Update to latest snapshot
+
 * Sat Dec 24 2016 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.1-0
 - Update to 3.3.1
 
