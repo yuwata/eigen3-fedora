@@ -74,7 +74,7 @@ Developer documentation for Eigen.
 %setup -q -n eigen-eigen-%{commit}
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p0 -b .fixcmake
+%patch2 -p0 -b .fixcmake
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
