@@ -4,12 +4,12 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 8fae26482842
+%global commit b3fc5ddfb7b4
 %{?commit:%global commitshort %(c=%{commit}; echo ${c:0:7})}
 
 Name:           eigen3
 Version:        3.3.1
-Release:        0.1%{?commit:.hg%{commitshort}}%{?dist}
+Release:        1.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -28,7 +28,7 @@ Patch0:         01_install_FindEigen3.patch
 # Fix pkg-config file
 Patch1:         eigen_pkgconfig.patch
 # Fix the include paths in the new Eigen3Config.cmake file
-#Patch2:         eigen3-3.3.0-fixcmake.patch
+Patch2:         eigen3-3.3.1-fixcmake.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -98,9 +98,6 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 
 %install
 %make_install -C %{_target_platform}
-# The following line is an workaround for missing Patch2 in the upstream repository
-sed -e 's|${PACKAGE_PREFIX_DIR}/${PACKAGE_PREFIX_DIR}|${PACKAGE_PREFIX_DIR}|' \
-    -i %{buildroot}%{_datadir}/%{name}/Eigen3Config.cmake
 
 %check
 # Run tests but make failures non-fatal. Note that upstream doesn't expect the
@@ -119,11 +116,11 @@ sed -e 's|${PACKAGE_PREFIX_DIR}/${PACKAGE_PREFIX_DIR}|${PACKAGE_PREFIX_DIR}|' \
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Sun Dec 25 2016 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.1-0.1.hg8fae264
+* Wed Jan 04 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.1-1.1.hgb3fc5dd
 - Update to latest snapshot
 
-* Sat Dec 24 2016 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.1-0
-- Update to 3.3.1
+* Wed Dec 28 2016 Rich Mattes <richmattes@gmail.com> - 3.3.1-1
+- Update to 3.3.1 (rhbz#1408538)
 
 * Wed Nov 23 2016 Rich Mattes <richmattes@gmail.com> - 3.3.0-1
 - Update to 3.3.0
