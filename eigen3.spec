@@ -4,12 +4,12 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 0b8af7296886
+%global commit 8cc687bca6ac
 %{?commit:%global commitshort %(c=%{commit}; echo ${c:0:7})}
 
 Name:           eigen3
 Version:        3.3.2
-Release:        1.3%{?commit:.hg%{commitshort}}%{?dist}
+Release:        1.4%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -116,6 +116,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Sat Feb 11 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-1.4.hg8cc687b
+- Update to latest snapshot 8cc687bca6ac
+
 * Fri Feb 10 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-1.3.hg0b8af72
 - Update to latest snapshot 0b8af7296886
 
