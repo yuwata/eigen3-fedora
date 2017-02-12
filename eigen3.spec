@@ -9,7 +9,7 @@
 
 Name:           eigen3
 Version:        3.3.2
-Release:        1.5%{?commit:.hg%{commitshort}}%{?dist}
+Release:        2.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -116,20 +116,11 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Sun Feb 12 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-1.5.hg332d580
+* Sun Feb 12 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-2.1.hg332d580
 - Update to latest snapshot 332d580117b7
 
-* Sat Feb 11 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-1.4.hg8cc687b
-- Update to latest snapshot 8cc687bca6ac
-
-* Fri Feb 10 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-1.3.hg0b8af72
-- Update to latest snapshot 0b8af7296886
-
-* Sat Feb 04 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-1.2.hg29f0625
-- Update to latest snapshot 29f0625a5c72
-
-* Mon Jan 23 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-1.1.hgaeba495
-- Update to latest snapshot
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.3.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
 * Sun Jan 22 2017 Sandro Mani <manisandro@gmail.com> - 3.3.2-1
 - Update to 3.3.2
