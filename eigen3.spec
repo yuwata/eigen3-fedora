@@ -8,8 +8,8 @@
 %{?commit:%global commitshort %(c=%{commit}; echo ${c:0:7})}
 
 Name:           eigen3
-Version:        3.3.2
-Release:        2.4%{?commit:.hg%{commitshort}}%{?dist}
+Version:        3.3.3
+Release:        0.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
