@@ -116,7 +116,7 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Wed Feb 22 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-2.4.hgb0e5ec4
+* Wed Feb 22 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.3-0.1.hgb0e5ec4
 - Update to latest snapshot b0e5ec4a24a5
 
 * Tue Feb 21 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.2-2.3.hg03f0be9
