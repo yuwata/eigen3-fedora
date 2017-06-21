@@ -4,12 +4,12 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 5acaa9e78112
+%global commit 211bfd92504a
 %{?commit:%global commitshort %(c=%{commit}; echo ${c:0:7})}
 
 Name:           eigen3
-Version:        3.3.3
-Release:        1.5%{?commit:.hg%{commitshort}}%{?dist}
+Version:        3.3.4
+Release:        1.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -116,20 +116,11 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Thu Jun 15 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.3-1.5.hg5acaa9e
-- Update to latest snapshot 5acaa9e78112
+* Wed Jun 21 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-1.1.hg211bfd9
+- Update to latest snapshot 211bfd92504a
 
-* Tue May 02 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.3-1.4.hgf4326d3
-- Update to latest snapshot f4326d36671f
-
-* Thu Apr 20 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.3-1.3.hg60219f3
-- Update to latest snapshot 60219f36d937
-
-* Thu Mar 23 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.3-1.2.hg44f9248
-- Update to latest snapshot 44f9248baf89
-
-* Sun Mar 12 2017 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.3-1.1.hgc7cf575
-- Update to latest snapshot c7cf575724de
+* Mon Jun 19 2017 Sandro Mani <manisandro@gmail.com> - 3.3.4-1
+- Update to 3.3.4
 
 * Wed Feb 22 2017 Sandro Mani <manisandro@gmail.com> - 3.3.3-1
 - Update to 3.3.3
