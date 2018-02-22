@@ -9,7 +9,7 @@
 
 Name:           eigen3
 Version:        3.3.4
-Release:        4.1%{?commit:.hg%{commitshort}}%{?dist}
+Release:        5.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -45,6 +45,8 @@ BuildRequires:  scotch-devel
 BuildRequires:  metis-devel
 
 BuildRequires:  cmake
+BuildRequires:  make
+BuildRequires:  gcc-c++
 BuildRequires:  doxygen
 BuildRequires:  graphviz
 BuildRequires:  tex(latex)
@@ -116,8 +118,11 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Sat Feb 10 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-4.1.hga546d43
+* Thu Feb 22 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-5.1.hga546d43
 - Update to latest git snapshot a546d43bdd4f
+
+* Sun Feb 18 2018 Sandro Mani <manisandro@gmail.com> - 3.3.4-5
+- Add missing BR: gcc-c++, make
 
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.3.4-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
