@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.3.4
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -24,6 +24,10 @@ Patch0:         01_install_FindEigen3.patch
 Patch1:         eigen_pkgconfig.patch
 # Fix the include paths in the new Eigen3Config.cmake file
 Patch2:         eigen3-3.3.1-fixcmake.patch
+
+# Bug 1436: fix compilation of Jacobi rotations with ARM NEON,
+# some specializations of internal::conj_helper were missing.
+Patch3:         https://bitbucket.org/eigen/eigen/commits/d781c1de98342c5ca29c2fe719d8d3c96a35dcd4/raw#/eigen3-3.3.4-fix_compilation_of_Jacobi_rotations.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -72,6 +76,7 @@ Developer documentation for Eigen.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0 -b .fixcmake
+%patch3 -p1 -b .bug1436
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
@@ -113,6 +118,10 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Fri May 25 2018 Björn Esser <besser82@fedoraproject.org> - 3.3.4-6
+- Fix compilation of Jacobi rotations with ARM NEON, some
+  specializations of internal::conj_helper were missing
+
 * Sun Feb 18 2018 Sandro Mani <manisandro@gmail.com> - 3.3.4-5
 - Add missing BR: gcc-c++, make
 
