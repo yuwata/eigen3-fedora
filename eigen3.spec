@@ -9,7 +9,7 @@
 
 Name:           eigen3
 Version:        3.3.4
-Release:        5.5%{?commit:.hg%{commitshort}}%{?dist}
+Release:        6.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -118,20 +118,12 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Fri Jun 15 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-5.5.hgbfc794a
+* Fri Jun 15 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-6.1.hgbfc794a
 - Update to latest git snapshot bfc794ae29d6
 
-* Wed May 23 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-5.4.hg568614b
-- Update to latest git snapshot 568614bf79b8
-
-* Thu Apr 26 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-5.3.hg20efc44
-- Update to latest git snapshot 20efc44c5500
-
-* Mon Apr 16 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-5.2.hgacb8ef9
-- Update to latest git snapshot acb8ef9b2478
-
-* Thu Feb 22 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-5.1.hga546d43
-- Update to latest git snapshot a546d43bdd4f
+* Fri May 25 2018 Björn Esser <besser82@fedoraproject.org> - 3.3.4-6
+- Fix compilation of Jacobi rotations with ARM NEON, some
+  specializations of internal::conj_helper were missing
 
 * Sun Feb 18 2018 Sandro Mani <manisandro@gmail.com> - 3.3.4-5
 - Add missing BR: gcc-c++, make
