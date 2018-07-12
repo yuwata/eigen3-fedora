@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.3.4
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -118,6 +118,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
+* Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.3.4-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Fri May 25 2018 Björn Esser <besser82@fedoraproject.org> - 3.3.4-6
 - Fix compilation of Jacobi rotations with ARM NEON, some
   specializations of internal::conj_helper were missing
