@@ -4,12 +4,12 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit 90d7654f4a59
+%global commit 0c66b4ebbdf0
 %{?commit:%global commitshort %(c=%{commit}; echo ${c:0:7})}
 
 Name:           eigen3
-Version:        3.3.4
-Release:        6.2%{?commit:.hg%{commitshort}}%{?dist}
+Version:        3.3.5
+Release:        1.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -77,6 +77,7 @@ Developer documentation for Eigen.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0 -b .fixcmake
+
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
@@ -118,11 +119,14 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %doc %{_target_platform}/doc/html
 
 %changelog
-* Sat Jun 30 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-6.2.hg90d7654
-- Update to latest git snapshot 90d7654f4a59
+* Mon Jul 30 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.5-1.1.hg0c66b4e
+- Update to latest git snapshot 0c66b4ebbdf0
 
-* Fri Jun 15 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.4-6.1.hgbfc794a
-- Update to latest git snapshot bfc794ae29d6
+* Thu Jul 26 2018 Sandro Mani <manisandro@gmail.com> - 3.3.5-1
+- Update to 3.3.5
+
+* Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.3.4-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
 * Fri May 25 2018 Björn Esser <besser82@fedoraproject.org> - 3.3.4-6
 - Fix compilation of Jacobi rotations with ARM NEON, some
