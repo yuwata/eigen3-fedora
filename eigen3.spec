@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.3.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -24,6 +24,9 @@ Patch0:         01_install_FindEigen3.patch
 Patch1:         eigen_pkgconfig.patch
 # Fix the include paths in the new Eigen3Config.cmake file
 Patch2:         eigen3-3.3.1-fixcmake.patch
+
+## upstream patches from 3.3 branch
+Patch104: 0004-fix-warnings-for-doc-eigen-prerequisites.patch
 
 BuildRequires:  atlas-devel
 BuildRequires:  fftw-devel
@@ -73,6 +76,8 @@ Developer documentation for Eigen.
 %patch1 -p1
 %patch2 -p0 -b .fixcmake
 
+%patch104 -p1 -b .0004
+
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
@@ -88,6 +93,7 @@ pushd %{_target_platform}
   -DMETIS_INCLUDES=%{_includedir} -DMETIS_LIBRARIES="metis" \
   -DCMAKEPACKAGE_INSTALL_DIR=%{_datadir}/%{name}
 popd
+
 %make_build -C %{_target_platform}
 %make_build doc -C %{_target_platform}
 
@@ -111,9 +117,12 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %{_datadir}/cmake/Modules/*.cmake
 
 %files doc
-%doc %{_target_platform}/doc/html
+#doc %{_target_platform}/doc/html
 
 %changelog
+* Thu Sep 06 2018 Rex Dieter <rdieter@fedoraproject.org> - 3.3.5-2
+- backport upstream fix for step FTBFS (#1619860)
+
 * Thu Jul 26 2018 Sandro Mani <manisandro@gmail.com> - 3.3.5-1
 - Update to 3.3.5
 
