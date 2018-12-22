@@ -4,12 +4,12 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit f37b3f5610ff
+%global commit 3011dc2762b2
 %{?commit:%global commitshort %(c=%{commit}; echo ${c:0:7})}
 
 Name:           eigen3
-Version:        3.3.5
-Release:        2.4%{?commit:.hg%{commitshort}}%{?dist}
+Version:        3.3.7
+Release:        0.1%{?commit:.hg%{commitshort}}%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 Group:          Development/Libraries
@@ -120,17 +120,11 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 #doc %{_target_platform}/doc/html
 
 %changelog
-* Mon Dec 03 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.5-2.4.hgf37b3f5
-- Update to latest git snapshot f37b3f5610ff
+* Sat Dec 22 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.7-0.1.hg3011dc2
+- Update to latest git snapshot 3011dc2762b2
 
-* Sun Nov 25 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.5-2.3.hg588e1eb
-- Update to latest git snapshot 588e1eb34eff
-
-* Thu Oct 11 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.5-2.2.hg706b111
-- Update to latest git snapshot 706b111aac55
-
-* Mon Sep 10 2018 Yu Watanabe <watanabe.yu@gmail.com> - 3.3.5-2.1.hga71f0e1
-- Update to latest git snapshot a71f0e14c2b9
+* Mon Dec 10 2018 Sandro Mani <manisandro@gmail.com> - 3.3.6-1
+- Update to 3.3.6
 
 * Thu Sep 06 2018 Rex Dieter <rdieter@fedoraproject.org> - 3.3.5-2
 - backport upstream fix for step FTBFS (#1619860)
