@@ -1,6 +1,6 @@
-diff -rupN eigen-eigen-07105f7124f9/eigen3.pc.in eigen-eigen-07105f7124f9-new/eigen3.pc.in
---- eigen-eigen-07105f7124f9/eigen3.pc.in	2016-02-16 14:26:15.000000000 +0100
-+++ eigen-eigen-07105f7124f9-new/eigen3.pc.in	2016-02-20 19:13:19.816842461 +0100
+diff -rupN eigen-eigen-323c052e1731/eigen3.pc.in eigen-eigen-323c052e1731-new/eigen3.pc.in
+--- eigen-eigen-323c052e1731/eigen3.pc.in	2018-12-11 18:57:55.000000000 +0100
++++ eigen-eigen-323c052e1731-new/eigen3.pc.in	2018-12-25 23:10:48.594420575 +0100
 @@ -6,4 +6,4 @@ Description: A C++ template library for
  Requires:
  Version: @EIGEN_VERSION_NUMBER@

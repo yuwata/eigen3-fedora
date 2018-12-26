@@ -4,10 +4,10 @@
 # debuginfo package for the empty main package.
 %global debug_package %{nil}
 
-%global commit b70bf4fad467
+%global commit 323c052e1731
 
 Name:           eigen3
-Version:        3.3.6
+Version:        3.3.7
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
@@ -49,38 +49,34 @@ BuildRequires:  tex(latex)
 %description
 %{summary}.
 
+
 %package devel
-Summary:   A lightweight C++ template library for vector and matrix math
-Group:     Development/Libraries
-BuildArch: noarch
+Summary:        A lightweight C++ template library for vector and matrix math
+BuildArch:      noarch
 # -devel subpkg only atm, compat with other distros
-Provides:  %{name} = %{version}-%{release}
+Provides:       %{name} = %{version}-%{release}
 # not *strictly* a -static pkg, but the results are the same
-Provides:  %{name}-static = %{version}-%{release}
+Provides:       %{name}-static = %{version}-%{release}
+
 %description devel
 %{summary}.
 
 %package doc
-Summary:   Developer documentation for Eigen
-Requires:  %{name}-devel = %{version}-%{release}
-BuildArch: noarch
+Summary:        Developer documentation for Eigen
+Requires:       %{name}-devel = %{version}-%{release}
+BuildArch:      noarch
+
 %description doc
 Developer documentation for Eigen.
 
+
 %prep
-%setup -q -n eigen-eigen-%{commit}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0 -b .fixcmake
+%autosetup -p1 -n eigen-eigen-%{commit}
+
 
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
-#%ifarch ppc64
-# Currently get a compiler ICE, work around it
-# https://bugzilla.redhat.com/show_bug.cgi?id=1063999
-#export CXXFLAGS="%{optflags} -mno-vsx"
-#%endif
 %cmake .. -DINCLUDE_INSTALL_DIR=%{_includedir}/eigen3 \
   -DBLAS_LIBRARIES="cblas" \
   -DSUPERLU_INCLUDES=%{_includedir}/SuperLU \
@@ -95,14 +91,17 @@ popd
 rm -f %{_target_platform}/doc/html/installdox
 rm -f %{_target_platform}/doc/html/unsupported/installdox
 
+
 %install
 %make_install -C %{_target_platform}
+
 
 %check
 # Run tests but make failures non-fatal. Note that upstream doesn't expect the
 # tests to pass consistently since they're seeded randomly.
-#make -C %{_target_platform} %{?_smp_mflags} buildtests
-#make -C %{_target_platform} %{?_smp_mflags} test ARGS="-V" || exit 0
+#make_build buildtests -C %{_target_platform}
+#make_build test -C %{_target_platform} test ARGS="-V" || :
+
 
 %files devel
 %license COPYING.README COPYING.BSD COPYING.MPL2 COPYING.LGPL
@@ -112,9 +111,15 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 %{_datadir}/cmake/Modules/*.cmake
 
 %files doc
-#doc %{_target_platform}/doc/html
+%doc %{_target_platform}/doc/html
+
 
 %changelog
+* Tue Dec 25 2018 Sandro Mani <manisandro@gmail.com> - 3.3.7-1
+- Update to 3.3.7
+- Modernize spec
+- Add doc
+
 * Mon Dec 10 2018 Sandro Mani <manisandro@gmail.com> - 3.3.6-1
 - Update to 3.3.6
 

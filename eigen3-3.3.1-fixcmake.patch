@@ -1,7 +1,7 @@
-diff -up ./CMakeLists.txt.fixcmake ./CMakeLists.txt
---- ./CMakeLists.txt.fixcmake	2016-12-28 11:39:51.690853423 -0500
-+++ ./CMakeLists.txt	2016-12-28 11:41:06.409811065 -0500
-@@ -511,7 +511,7 @@ set ( EIGEN_VERSION_MAJOR  ${EIGEN_WORLD
+diff -rupN eigen-eigen-323c052e1731/CMakeLists.txt eigen-eigen-323c052e1731-new/CMakeLists.txt
+--- eigen-eigen-323c052e1731/CMakeLists.txt	2018-12-25 23:10:48.592420583 +0100
++++ eigen-eigen-323c052e1731-new/CMakeLists.txt	2018-12-25 23:10:48.659420305 +0100
+@@ -531,7 +531,7 @@ set ( EIGEN_VERSION_MAJOR  ${EIGEN_WORLD
  set ( EIGEN_VERSION_MINOR  ${EIGEN_MAJOR_VERSION} )
  set ( EIGEN_VERSION_PATCH  ${EIGEN_MINOR_VERSION} )
  set ( EIGEN_DEFINITIONS "")
