@@ -11,7 +11,6 @@ Version:        3.3.7
 Release:        1%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
-Group:          Development/Libraries
 License:        MPLv2.0 and LGPLv2+ and BSD
 URL:            http://eigen.tuxfamily.org/index.php?title=Main_Page
 Source0:        http://bitbucket.org/eigen/eigen/get/%{version}.tar.bz2
