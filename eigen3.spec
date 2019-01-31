@@ -8,7 +8,7 @@
 
 Name:           eigen3
 Version:        3.3.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lightweight C++ template library for vector and matrix math
 
 License:        MPLv2.0 and LGPLv2+ and BSD
@@ -114,6 +114,9 @@ rm -f %{_target_platform}/doc/html/unsupported/installdox
 
 
 %changelog
+* Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.3.7-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Tue Dec 25 2018 Sandro Mani <manisandro@gmail.com> - 3.3.7-1
 - Update to 3.3.7
 - Modernize spec
